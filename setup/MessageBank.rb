@@ -30,9 +30,9 @@ module Pod
     end
 
     def welcome_message
-      unless @configurator.validate_user_details
+      # unless @configurator.validate_user_details
         run_setup_questions
-      end
+      # end
 
       puts "\n------------------------------"
       puts ""
