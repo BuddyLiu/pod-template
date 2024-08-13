@@ -5,6 +5,5 @@ Dir[File.join($current_dir, "/*.rb")].each do |file|
   require_relative(file)
 end
 
-# pod_name = ARGV.shift
-pod_name = "Test"
+pod_name = ARGV.shift
 Pod::TemplateConfigurator.new(pod_name).run
