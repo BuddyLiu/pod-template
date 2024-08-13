@@ -45,7 +45,7 @@ module Pod
     end
 
     def add_CURRENT_PROJECT_VERSION
-      debug_config = target.build_configurations.find { |config| config.name == 'Debug' }
+      debug_config = @project.targets.first.build_configurations.find { |config| config.name == 'Debug' }
       debug_config.build_settings['CURRENT_PROJECT_VERSION'] = '1.0.0'
     end
 
