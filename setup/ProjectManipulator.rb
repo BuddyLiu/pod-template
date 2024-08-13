@@ -123,24 +123,6 @@ RUBY
           File.rename before, after
         end
 
-        # rename swift tests project files
-        ["PROJECTTests.swift"].each do |file|
-          before = project_folder + "/PROJECTTests/" + file
-          next unless File.exist? before
-
-          after = project_folder + "/PROJECTTests/" + file.gsub("PROJECT", @configurator.pod_name)
-          File.rename before, after
-        end
-
-        # rename swift ui tests project files
-        ["PROJECTUITests.swift"].each do |file|
-          before = project_folder + "/PROJECTUITests/" + file
-          next unless File.exist? before
-
-          after = project_folder + "/PROJECTUITests/" + file.gsub("PROJECT", @configurator.pod_name)
-          File.rename before, after
-        end
-
       end
 
     end
