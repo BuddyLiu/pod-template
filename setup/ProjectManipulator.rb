@@ -29,6 +29,7 @@ module Pod
 
       @project = Xcodeproj::Project.open(@xcodeproj_path)
       add_podspec_metadata
+      add_CURRENT_PROJECT_VERSION
       remove_demo_project if @remove_demo_target
       @project.save
 
@@ -41,6 +42,11 @@ module Pod
       project_metadata_item.new_file "../" + @configurator.pod_name  + ".podspec"
       project_metadata_item.new_file "../README.md"
       project_metadata_item.new_file "../LICENSE"
+    end
+
+    def add_CURRENT_PROJECT_VERSION
+      debug_config = target.build_configurations.find { |config| config.name == 'Debug' }
+      debug_config.build_settings['CURRENT_PROJECT_VERSION'] = '1.0.0'
     end
 
     def remove_demo_project
