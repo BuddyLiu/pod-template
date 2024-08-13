@@ -69,25 +69,40 @@ module Pod
 
     def run
       @message_bank.welcome_message
-
-      platform = self.ask_with_answers("What platform do you want to use?", ["iOS", "macOS"]).to_sym
-
-      case platform
-        when :macos
-          ConfigureMacOSSwift.perform(configurator: self)
-        when :ios
-          framework = self.ask_with_answers("What language do you want to use?", ["Swift", "ObjC", "SwiftUI"]).to_sym
-          case framework
-            when :swift
-              ConfigureSwift.perform(configurator: self)
-
-            when :objc
-              ConfigureIOS.perform(configurator: self)
-
-            when :swiftui
-              ConfigureSwiftUI.perform(configurator: self)
-          end
+      # 提示用户输入目录路径
+      print "当前目录路径: #{Dir.pwd}"
+      print "请输入工作目录路径: "
+      # user_path = gets.chomp
+      Dir.chdir("/Users/bo.liu/Documents/Buddy/Code/Swift/Test") do
+        puts "当前目录已切换到: #{Dir.pwd}"
       end
+      # # 尝试切换到用户指定的目录
+      # if Dir.exist?(user_path)
+      #   Dir.chdir(user_path) do
+      #     puts "当前目录已切换到: #{Dir.pwd}"
+      #   end
+      # else
+      #   puts "指定的目录不存在，请检查路径是否正确。"
+      # end
+      ConfigureSwiftUI.perform(configurator: self)
+      # platform = self.ask_with_answers("What platform do you want to use?", ["iOS", "macOS"]).to_sym
+
+      # case platform
+      #   when :macos
+      #     ConfigureMacOSSwift.perform(configurator: self)
+      #   when :ios
+      #     framework = self.ask_with_answers("What language do you want to use?", ["Swift", "ObjC", "SwiftUI"]).to_sym
+      #     case framework
+      #       when :swift
+      #         ConfigureSwift.perform(configurator: self)
+
+      #       when :objc
+      #         ConfigureIOS.perform(configurator: self)
+
+      #       when :swiftui
+      #         ConfigureSwiftUI.perform(configurator: self)
+      #     end
+      # end
 
       replace_variables_in_files
       clean_template_files
