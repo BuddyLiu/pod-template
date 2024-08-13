@@ -46,9 +46,9 @@ module Pod
 
     def add_CURRENT_PROJECT_VERSION
       debug_config = @project.targets.first.build_configurations.find { |config| config.name == 'Debug' }
-      debug_config.build_settings['CURRENT_'+@configurator.pod_name+'_VERSION'] = '1.0.0'
+      debug_config.build_settings['CURRENT_PROJECT_VERSION'] = '1.0.0'
       release_config = @project.targets.first.build_configurations.find { |config| config.name == 'Release' }
-      release_config.build_settings['CURRENT_'+@configurator.pod_name+'_VERSION'] = '1.0.0'
+      release_config.build_settings['CURRENT_PROJECT_VERSION'] = '1.0.0'
     end
 
     def remove_demo_project
